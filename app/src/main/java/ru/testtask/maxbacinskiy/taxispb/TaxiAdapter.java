@@ -13,10 +13,17 @@ import android.widget.TextView;
 
 public class TaxiAdapter extends RecyclerView.Adapter<TaxiAdapter.TaxiOrderViewHolder> {
 
-    DataFinder df;
+    private DataFinder df;
 
-    public TaxiAdapter() {
+    private final TaxiAdapterOnClickListener mClickHandler;
+
+    public interface TaxiAdapterOnClickListener {
+        void onClick(TaxiOrder order);
+    }
+
+    public TaxiAdapter(TaxiAdapterOnClickListener listener) {
         df = new DataFinder();
+        mClickHandler = listener;
     }
 
     @Override
@@ -40,7 +47,7 @@ public class TaxiAdapter extends RecyclerView.Adapter<TaxiAdapter.TaxiOrderViewH
         return df.getOrdersCount();
     }
 
-    public class TaxiOrderViewHolder extends RecyclerView.ViewHolder {
+    public class TaxiOrderViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView m_route;
         TextView m_date;
         TextView m_cost;
@@ -53,13 +60,22 @@ public class TaxiAdapter extends RecyclerView.Adapter<TaxiAdapter.TaxiOrderViewH
             m_date = (TextView) itemView.findViewById(R.id.tv_date);
             m_cost = (TextView) itemView.findViewById(R.id.tv_money);
 
+            itemView.setOnClickListener(this);
+
         }
 
         void bind(int listItemIndex) {
-            DataFinder.TaxiOrder order = df.getOrder(listItemIndex);
+            TaxiOrder order = df.getOrder(listItemIndex);
             m_route.setText(order.pointA + " - " + order.pointB);
             m_date.setText(order.date);
             m_cost.setText(order.cost);
+        }
+
+        @Override
+        public void onClick(View view) {
+            int position = getAdapterPosition();
+            TaxiOrder order = df.getOrder(position);
+            mClickHandler.onClick(order);
         }
     }
 }

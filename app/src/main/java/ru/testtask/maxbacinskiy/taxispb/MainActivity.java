@@ -1,14 +1,16 @@
 package ru.testtask.maxbacinskiy.taxispb;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements TaxiAdapter.TaxiAdapterOnClickListener {
 
     private TaxiAdapter mAdapter;
     private RecyclerView mRecyclerView;
+    public static final String TAXI_ORDER_TAG = "TaxiOrderTag";
 
 
     @Override
@@ -23,7 +25,14 @@ public class MainActivity extends AppCompatActivity {
 
         mRecyclerView.setHasFixedSize(true);
 
-        mAdapter = new TaxiAdapter();
+        mAdapter = new TaxiAdapter(this);
         mRecyclerView.setAdapter(mAdapter);
+    }
+
+    @Override
+    public void onClick(TaxiOrder order) {
+        Intent intentToStart = new Intent(this, OrderDetailActivity.class);
+        intentToStart.putExtra(TAXI_ORDER_TAG, order);
+        startActivity(intentToStart);
     }
 }

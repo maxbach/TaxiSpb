@@ -15,7 +15,8 @@ public class DataFinder {
         taxiOrders = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
             taxiOrders.add(new TaxiOrder("Новоизмайловский проспект 16 к.2",
-                    "Московский вокзал", "16.02.2014", "155 RUB"));
+                    "Московский вокзал", "16.02.2014", "155 RUB", "18:56", "Михаил", "BMW i5",
+                    " В 888 ВВ 25 RUS"));
         }
     }
 
@@ -31,18 +32,5 @@ public class DataFinder {
         return taxiOrders.get(index);
     }
 
-    public class TaxiOrder {
-        String pointA;
-        String pointB;
-        String date;
-        String cost;
-
-        public TaxiOrder(String pointA, String pointB, String date, String cost) {
-            this.pointA = pointA;
-            this.pointB = pointB;
-            this.date = date;
-            this.cost = cost;
-        }
-    }
 
 }

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/iv_info_car_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="Image of car"
+        android:paddingBottom="8dp"
+        android:src="@mipmap/ic_launcher_round" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:id="@+id/tv_info_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            tools:text="18:19" />
+
+        <TextView
+            android:id="@+id/tv_info_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            tools:text="18.03.2018" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_info_address_from"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+        tools:text="From: Арсеньева 4" />
+
+    <TextView
+        android:id="@+id/tv_info_address_to"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+        tools:text="To: Омская 8" />
+
+    <TextView
+        android:id="@+id/tv_info_car_driver"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        tools:text="Водитель: Михаил" />
+
+    <TextView
+        android:id="@+id/tv_info_car_brand"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        tools:text="Машина: Toyota Camry" />
+
+    <TextView
+        android:id="@+id/tv_info_car_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|fill_vertical"
+        android:textSize="45sp"
+        tools:text="A 550 BB RUS 25" />
+
+
+    <TextView
+        android:id="@+id/tv_info_cost"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal|bottom"
+        android:padding="16dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        tools:text="450 RUB" />
+</LinearLayout>
