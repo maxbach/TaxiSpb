@@ -1,5 +1,7 @@
 package ru.testtask.maxbacinskiy.taxispb;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 
 import java.io.IOException;
@@ -57,4 +59,22 @@ public class NetworkUtils {
             connection.disconnect();
         }
     }
+
+    public static Bitmap getImageFromUrl(URL url) throws IOException {
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        try {
+            InputStream in = connection.getInputStream();
+            Bitmap bmp = BitmapFactory.decodeStream(in);
+
+            if (bmp != null) {
+                return bmp;
+            } else {
+                return null;
+            }
+
+        } finally {
+            connection.disconnect();
+        }
+    }
+
 }

@@ -1,9 +1,15 @@
 package ru.testtask.maxbacinskiy.taxispb;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.io.IOException;
+import java.net.URL;
 
 public class OrderDetailActivity extends AppCompatActivity {
 
@@ -15,6 +21,7 @@ public class OrderDetailActivity extends AppCompatActivity {
     private TextView mDate;
     private TextView mTime;
     private TextView mCost;
+    private ImageView mCarImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +36,7 @@ public class OrderDetailActivity extends AppCompatActivity {
         mDate = (TextView) findViewById(R.id.tv_info_date);
         mTime = (TextView) findViewById(R.id.tv_info_time);
         mCost = (TextView) findViewById(R.id.tv_info_cost);
-
+        mCarImage = (ImageView) findViewById(R.id.iv_info_car_image);
 
         Intent intent = getIntent();
 
@@ -45,9 +52,31 @@ public class OrderDetailActivity extends AppCompatActivity {
                 mDate.setText(order.getDate());
                 mTime.setText(order.getTime());
                 mCost.setText(order.getCost());
+                new ImageLoadTask().execute(order.getImageWay());
 
             }
         }
 
+    }
+
+    public class ImageLoadTask extends AsyncTask<String, Void, Bitmap> {
+
+        @Override
+        protected Bitmap doInBackground(String... strings) {
+            String imageWay = strings[0];
+            URL url = NetworkUtils.buildImageUrl(imageWay);
+            Bitmap bmp = null;
+            try {
+                bmp = NetworkUtils.getImageFromUrl(url);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return bmp;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+            mCarImage.setImageBitmap(bitmap);
+        }
     }
 }
