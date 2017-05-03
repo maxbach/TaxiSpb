@@ -1,6 +1,7 @@
 package ru.testtask.maxbacinskiy.taxispb;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -25,8 +26,8 @@ public class MainActivity extends AppCompatActivity implements TaxiAdapter.TaxiA
 
         mRecyclerView.setHasFixedSize(true);
 
-        mAdapter = new TaxiAdapter(this);
-        mRecyclerView.setAdapter(mAdapter);
+        new GetInfoTask().execute(this);
+
     }
 
     @Override
@@ -34,5 +35,21 @@ public class MainActivity extends AppCompatActivity implements TaxiAdapter.TaxiA
         Intent intentToStart = new Intent(this, OrderDetailActivity.class);
         intentToStart.putExtra(TAXI_ORDER_TAG, order);
         startActivity(intentToStart);
+    }
+
+    public class GetInfoTask extends AsyncTask<TaxiAdapter.TaxiAdapterOnClickListener, Void, TaxiAdapter> {
+
+
+        @Override
+        protected TaxiAdapter doInBackground(TaxiAdapter.TaxiAdapterOnClickListener... taxiAdapterOnClickListeners) {
+            TaxiAdapter.TaxiAdapterOnClickListener listener = taxiAdapterOnClickListeners[0];
+            return new TaxiAdapter(listener);
+        }
+
+        @Override
+        protected void onPostExecute(TaxiAdapter taxiAdapter) {
+            mAdapter = taxiAdapter;
+            mRecyclerView.setAdapter(mAdapter);
+        }
     }
 }

@@ -66,9 +66,9 @@ public class TaxiAdapter extends RecyclerView.Adapter<TaxiAdapter.TaxiOrderViewH
 
         void bind(int listItemIndex) {
             TaxiOrder order = df.getOrder(listItemIndex);
-            m_route.setText(order.pointA + " - " + order.pointB);
-            m_date.setText(order.date);
-            m_cost.setText(order.cost);
+            m_route.setText(order.getPointA() + " - " + order.getPointB());
+            m_date.setText(order.getDate());
+            m_cost.setText(order.getCost());
         }
 
         @Override
