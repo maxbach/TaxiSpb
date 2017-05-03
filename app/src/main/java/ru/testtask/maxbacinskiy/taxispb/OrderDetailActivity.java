@@ -1,5 +1,6 @@
 package ru.testtask.maxbacinskiy.taxispb;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
@@ -64,12 +65,19 @@ public class OrderDetailActivity extends AppCompatActivity {
         @Override
         protected Bitmap doInBackground(String... strings) {
             String imageWay = strings[0];
-            URL url = NetworkUtils.buildImageUrl(imageWay);
-            Bitmap bmp = null;
-            try {
-                bmp = NetworkUtils.getImageFromUrl(url);
-            } catch (IOException e) {
-                e.printStackTrace();
+            Context context = OrderDetailActivity.this.getApplicationContext();
+
+            Bitmap bmp = ImageMemoryUtils.loadImageFromInternal(imageWay, context);
+            if (bmp == null) {
+                URL url = NetworkUtils.buildImageUrl(imageWay);
+
+                try {
+                    bmp = NetworkUtils.getImageFromUrl(url);
+                    ImageMemoryUtils.saveImageToInternal(imageWay, bmp, context);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
             }
             return bmp;
         }
