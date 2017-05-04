@@ -24,6 +24,20 @@ public class DataFinder {
 
     public DataFinder() {
         taxiOrders = new ArrayList<>();
+        loadInfo();
+
+    }
+
+    public int getOrdersCount() {
+        return taxiOrders.size();
+    }
+
+    public void refresh() {
+        taxiOrders.clear();
+        loadInfo();
+    }
+
+    public void loadInfo() {
         URL url = NetworkUtils.buildInfoUrl();
         String jsonInfo;
         try {
@@ -33,11 +47,6 @@ public class DataFinder {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-    }
-
-    public int getOrdersCount() {
-        return taxiOrders.size();
     }
 
     public List<TaxiOrder> getOrders() {
@@ -58,12 +67,14 @@ public class DataFinder {
                 TaxiOrder order = new TaxiOrder();
 
                 JSONObject addressA = jsonObject.getJSONObject("startAddress");
-                String pointA = addressA.getString("city") + " " + addressA.getString("address");
-                order.setPointA(pointA);
+                String city = addressA.getString("city");
+                String address = addressA.getString("address");
+                order.setPointA(new TaxiOrder.Address(city, address));
 
                 JSONObject addressB = jsonObject.getJSONObject("endAddress");
-                String pointB = addressB.getString("city") + " " + addressB.getString("address");
-                order.setPointB(pointB);
+                city = addressB.getString("city");
+                address = addressB.getString("address");
+                order.setPointB(new TaxiOrder.Address(city, address));
 
                 JSONObject costJson = jsonObject.getJSONObject("price");
                 Double amount = Double.parseDouble(costJson.getString("amount")) / 100;

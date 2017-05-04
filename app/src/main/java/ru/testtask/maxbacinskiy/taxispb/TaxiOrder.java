@@ -7,8 +7,8 @@ import java.io.Serializable;
  */
 
 public class TaxiOrder implements Serializable {
-    private String pointA;
-    private String pointB;
+    private Address pointA;
+    private Address pointB;
     private String date;
     private String cost;
     private String time;
@@ -20,19 +20,19 @@ public class TaxiOrder implements Serializable {
     public TaxiOrder() {
     }
 
-    public String getPointA() {
+    public Address getPointA() {
         return pointA;
     }
 
-    public void setPointA(String pointA) {
+    public void setPointA(Address pointA) {
         this.pointA = pointA;
     }
 
-    public String getPointB() {
+    public Address getPointB() {
         return pointB;
     }
 
-    public void setPointB(String pointB) {
+    public void setPointB(Address pointB) {
         this.pointB = pointB;
     }
 
@@ -91,4 +91,24 @@ public class TaxiOrder implements Serializable {
     public void setImageWay(String imageWay) {
         this.imageWay = imageWay;
     }
+
+    static class Address implements Serializable {
+        private String city;
+        private String address;
+
+        public Address(String city, String address) {
+            this.city = city;
+            this.address = address;
+        }
+
+        public String getCity() {
+            return city;
+        }
+
+        public String getAddress() {
+            return address;
+        }
+    }
+
+
 }

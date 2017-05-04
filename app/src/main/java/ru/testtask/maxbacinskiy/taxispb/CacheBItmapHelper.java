@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by maxbacinskiy on 03.05.17.
@@ -35,13 +36,13 @@ public class CacheBItmapHelper {
                 while (true) {
                     try {
                         checkAllBitmapForTime();
-                        Thread.sleep(10*60*1000);
+                        Thread.sleep(TimeUnit.MINUTES.toMillis(10));
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
             }
-        });
+        }).start();
 
     }
 

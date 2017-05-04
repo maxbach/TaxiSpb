@@ -47,6 +47,10 @@ public class TaxiAdapter extends RecyclerView.Adapter<TaxiAdapter.TaxiOrderViewH
         return df.getOrdersCount();
     }
 
+    public void refresh() {
+        df.refresh();
+    }
+
     public class TaxiOrderViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView m_route;
         TextView m_date;
@@ -66,7 +70,18 @@ public class TaxiAdapter extends RecyclerView.Adapter<TaxiAdapter.TaxiOrderViewH
 
         void bind(int listItemIndex) {
             TaxiOrder order = df.getOrder(listItemIndex);
-            m_route.setText(order.getPointA() + " - " + order.getPointB());
+            String city1 = order.getPointA().getCity();
+            String city2 = order.getPointB().getCity();
+            String line;
+            if (city1.equals(city2)) {
+                line = order.getPointA().getAddress() + " - " + order.getPointB().getAddress();
+
+            } else {
+                line = order.getPointA().getAddress() + " (" + city1 + ") " +
+                        " - " + order.getPointB().getAddress() + " (" + city2 + ")";
+            }
+
+            m_route.setText(line);
             m_date.setText(order.getDate());
             m_cost.setText(order.getCost());
         }

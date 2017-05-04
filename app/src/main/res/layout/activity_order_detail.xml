@@ -1,87 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/iv_info_car_image"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:contentDescription="Image of car"
-        android:paddingBottom="8dp"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/ic_launcher_round" />
+        android:orientation="vertical">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp">
 
-        <TextView
-            android:id="@+id/tv_info_time"
-            android:layout_width="wrap_content"
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            tools:text="18:19" />
+            android:layout_margin="8dp"
+            app:cardCornerRadius="@dimen/cardview_default_radius">
 
-        <TextView
-            android:id="@+id/tv_info_date"
-            android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/iv_info_car_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="8dp"
+                    android:scaleType="centerCrop"
+                    tools:contentDescription="Image of car"
+                    tools:src="@mipmap/ic_launcher_round" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp">
+
+                    <TextView
+                        android:id="@+id/tv_info_car_brand"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                        android:textSize="24sp"
+                        tools:text="Lada granta" />
+
+
+                    <TextView
+                        android:id="@+id/tv_info_car_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                        android:textSize="24sp"
+                        tools:text="A550BB RUS25" />
+
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/tv_info_car_driver"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="8dp"
+                    tools:text="Иванов Иван Иванович" />
+
+
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            tools:text="18.03.2018" />
-    </FrameLayout>
+            android:layout_margin="8dp"
+            app:cardCornerRadius="@dimen/cardview_default_radius">
 
-    <TextView
-        android:id="@+id/tv_info_address_from"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
-        tools:text="From: Арсеньева 4" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_info_address_to"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
-        tools:text="To: Омская 8" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/tv_info_car_driver"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        tools:text="Водитель: Михаил" />
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+                        android:text="@string/a"/>
 
-    <TextView
-        android:id="@+id/tv_info_car_brand"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        tools:text="Машина: Toyota Camry" />
+                    <TextView
+                        android:id="@+id/tv_info_address_from"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:layout_gravity="center_vertical"
+                        tools:text="Омская 8" />
 
-    <TextView
-        android:id="@+id/tv_info_car_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center|fill_vertical"
-        android:textSize="45sp"
-        tools:text="A 550 BB RUS 25" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+                        android:text="@string/b"/>
+
+                    <TextView
+                        android:id="@+id/tv_info_address_to"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:layout_gravity="center_vertical"
+                        tools:text="Омская 8" />
+
+                </LinearLayout>
+
+            </LinearLayout>
 
 
-    <TextView
-        android:id="@+id/tv_info_cost"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal|bottom"
-        android:padding="16dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        tools:text="450 RUB" />
-</LinearLayout>
+        </android.support.v7.widget.CardView>
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="@dimen/cardview_default_radius">
+
+
+            <TextView
+                android:id="@+id/tv_info_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:padding="8dp"
+                android:textSize="32sp"
+                tools:text="17.05.2017" />
+
+            <TextView
+                android:id="@+id/tv_info_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:padding="8dp"
+                android:textSize="32sp"
+                tools:text="18:16:18" />
+
+
+        </android.support.v7.widget.CardView>
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="@dimen/cardview_default_radius">
+
+            <TextView
+                android:id="@+id/tv_info_cost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal|bottom"
+                android:padding="16dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                tools:text="450 RUB" />
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+</ScrollView>
