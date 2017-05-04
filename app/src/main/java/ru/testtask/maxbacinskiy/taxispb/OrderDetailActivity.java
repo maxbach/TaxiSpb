@@ -14,6 +14,7 @@ import java.net.URL;
 
 public class OrderDetailActivity extends AppCompatActivity {
 
+    private static CacheBItmapHelper cacheHelper;
     private TextView mAddressFrom;
     private TextView mAddressTo;
     private TextView mCarNumber;
@@ -23,6 +24,10 @@ public class OrderDetailActivity extends AppCompatActivity {
     private TextView mTime;
     private TextView mCost;
     private ImageView mCarImage;
+
+    static {
+        cacheHelper = new CacheBItmapHelper();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,18 +72,27 @@ public class OrderDetailActivity extends AppCompatActivity {
             String imageWay = strings[0];
             Context context = OrderDetailActivity.this.getApplicationContext();
 
-            Bitmap bmp = ImageMemoryUtils.loadImageFromInternal(imageWay, context);
-            if (bmp == null) {
-                URL url = NetworkUtils.buildImageUrl(imageWay);
+            Bitmap bmp = cacheHelper.getBitmap(imageWay);
 
-                try {
-                    bmp = NetworkUtils.getImageFromUrl(url);
-                    ImageMemoryUtils.saveImageToInternal(imageWay, bmp, context);
-                } catch (IOException e) {
-                    e.printStackTrace();
+            if (bmp == null) {
+
+                bmp = ImageMemoryUtils.loadImageFromInternal(imageWay, context);
+
+                if (bmp == null) {
+                    URL url = NetworkUtils.buildImageUrl(imageWay);
+
+                    try {
+                        bmp = NetworkUtils.getImageFromUrl(url);
+                        ImageMemoryUtils.saveImageToInternal(imageWay, bmp, context);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
                 }
 
+                cacheHelper.addBitmap(imageWay, bmp);
             }
+
             return bmp;
         }
 
