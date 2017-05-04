@@ -6,7 +6,7 @@ Android-приложение, которое обрабатывает сложн
 
 
 ### Главная страница приложения
-![main screen](/screenshots/main_screen_.png)
+![main screen](/screenshots/main_screen.png)
 
 ### Дополнительный экран
-![main screen](/screenshots/info_screen_.png)
+![main screen](/screenshots/info_screen.png)
