@@ -4,14 +4,16 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true">
 
     <TextView
         android:id="@+id/tv_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="Арсеньева 4 - Омская 8"
-        android:textSize="21sp"
         android:layout_gravity="clip_vertical|clip_horizontal"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:layout_marginBottom="8dp"/>

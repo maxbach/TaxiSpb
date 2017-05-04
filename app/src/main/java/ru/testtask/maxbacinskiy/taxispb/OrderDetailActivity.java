@@ -49,6 +49,7 @@ public class OrderDetailActivity extends AppCompatActivity {
         if (intent != null) {
             if (intent.hasExtra(MainActivity.TAXI_ORDER_TAG)) {
                 TaxiOrder order = (TaxiOrder) intent.getSerializableExtra(MainActivity.TAXI_ORDER_TAG);
+                new ImageLoadTask().execute(order.getImageWay());
 
                 mAddressFrom.setText("From: " + order.getPointA());
                 mAddressTo.setText("To: " + order.getPointB());
@@ -58,7 +59,7 @@ public class OrderDetailActivity extends AppCompatActivity {
                 mDate.setText(order.getDate());
                 mTime.setText(order.getTime());
                 mCost.setText(order.getCost());
-                new ImageLoadTask().execute(order.getImageWay());
+
 
             }
         }

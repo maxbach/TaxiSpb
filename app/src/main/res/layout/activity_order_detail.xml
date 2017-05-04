@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:contentDescription="Image of car"
         android:paddingBottom="8dp"
+        android:scaleType="centerCrop"
         android:src="@mipmap/ic_launcher_round" />
 
     <FrameLayout
@@ -78,7 +79,7 @@
     <TextView
         android:id="@+id/tv_info_cost"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center_horizontal|bottom"
         android:padding="16dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
