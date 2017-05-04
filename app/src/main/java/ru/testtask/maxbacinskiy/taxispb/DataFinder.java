@@ -9,6 +9,8 @@ import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -27,6 +29,7 @@ public class DataFinder {
         try {
             jsonInfo = NetworkUtils.getResponceFromUrl(url);
             buildListOfOrdersFromJson(jsonInfo);
+            sortItems();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -98,6 +101,30 @@ public class DataFinder {
         }
 
 
+    }
+
+    private void sortItems() {
+        Collections.sort(taxiOrders, new Comparator<TaxiOrder>() {
+            @Override
+            public int compare(TaxiOrder taxiOrder, TaxiOrder t1) {
+                try {
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+                    SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+                    Date date1 = dateFormat.parse(taxiOrder.getDate());
+                    Date date2 = dateFormat.parse(t1.getDate());
+                    int compare = date2.compareTo(date1);
+                    if (compare == 0) {
+                        date1 = timeFormat.parse(taxiOrder.getTime());
+                        date2 = timeFormat.parse(t1.getTime());
+                        compare = date2.compareTo(date1);
+                    }
+                    return compare;
+                } catch (ParseException ex) {
+                    ex.printStackTrace();
+                    return 0;
+                }
+            }
+        });
     }
 
 
